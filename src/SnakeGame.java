@@ -21,15 +21,15 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     int boardHeight;
     int TitleSize = 25;
 
-    //snake
+
     Title snakeHead;
     ArrayList<Title> snakeBody;
 
-    //food
+
     Title food;
     Random random;
 
-    //game logic
+
     int velocityX;
     int velocityY;
     Timer gameLoop;
@@ -75,21 +75,21 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             g.drawLine(0, i*TitleSize, boardWidth, i*TitleSize);
         }
 
-        //Food
+
         g.setColor(Color.red);
         g.fill3DRect(food.x*TitleSize, food.y*TitleSize, TitleSize, TitleSize, true);
 
-        //Snake Head
+
         g.setColor(Color.green);
         g.fill3DRect(snakeHead.x*TitleSize, snakeHead.y*TitleSize, TitleSize, TitleSize, true);
 
-        //Snake Body
+
         for (int i = 0; i < snakeBody.size(); i++) {
             Title snakePart = snakeBody.get(i);
             g.fill3DRect(snakePart.x*TitleSize, snakePart.y*TitleSize, TitleSize, TitleSize, true);
         }
 
-        //Score
+
         g.setFont(new Font("Arial", Font.PLAIN, 16));
         if (gameOver) {
             g.setColor(Color.red);
@@ -108,13 +108,13 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     }
 
     public void move() {
-        //eat food
+
         if (collision(snakeHead, food)) {
             snakeBody.add(new Title(food.x, food.y));
             placeFood();
         }
 
-        //move snake body
+
         for (int i = snakeBody.size()-1; i >= 0; i--) {
             Title snakePart = snakeBody.get(i);
             if (i == 0) { //right before the head
@@ -127,11 +127,11 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
                 snakePart.y = prevSnakePart.y;
             }
         }
-        //move snake head
+
         snakeHead.x += velocityX;
         snakeHead.y += velocityY;
 
-        //game over conditions
+
         for (int i = 0; i < snakeBody.size(); i++) {
             Title snakePart = snakeBody.get(i);
 
@@ -228,8 +228,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         gameLoop.start();
     }
     }
-
-    //not needed
+    
     @Override
     public void keyTyped(KeyEvent e) {}
 
