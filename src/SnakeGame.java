@@ -56,7 +56,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         velocityX = 1;
         velocityY = 0;
 
-        gameLoop = new Timer(100, this); //how long it takes to start timer, milliseconds gone between frames
+        gameLoop = new Timer(100, this); 
         gameLoop.start();
 
         this.requestFocus();
@@ -68,9 +68,8 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     }
 
     public void draw(Graphics g) {
-        //Grid Lines
         for(int i = 0; i < boardWidth/TitleSize; i++) {
-            //(x1, y1, x2, y2)
+
             g.drawLine(i*TitleSize, 0, i*TitleSize, boardHeight);
             g.drawLine(0, i*TitleSize, boardWidth, i*TitleSize);
         }
@@ -117,7 +116,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         for (int i = snakeBody.size()-1; i >= 0; i--) {
             Title snakePart = snakeBody.get(i);
-            if (i == 0) { //right before the head
+            if (i == 0) {
                 snakePart.x = snakeHead.x;
                 snakePart.y = snakeHead.y;
             }
@@ -135,7 +134,6 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         for (int i = 0; i < snakeBody.size(); i++) {
             Title snakePart = snakeBody.get(i);
 
-            //collide with snake head
             if (collision(snakeHead, snakePart)) {
                 gameOver = true;
             }
@@ -144,7 +142,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         if (snakeHead.x*TitleSize < 0 || snakeHead.x*TitleSize > boardWidth || //passed left border or right border
                 snakeHead.y*TitleSize < 0 || snakeHead.y*TitleSize > boardHeight ) { //passed top border or bottom border
             gameOver = true;
-        }// winning condition
+        }// kodisi menang dalam permainan
         if (snakeBody.size() >= targetScore) {
             finishgame = true;
             winmessage = "Congratulations! You completed Level " + currentLevel + "!";
@@ -164,14 +162,14 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
     private void increaseSpeed() {
         int currentDelay = gameLoop.getDelay();
-        if (currentDelay > 10) { // Prevent negative delay
-            int newDelay = currentDelay - 5; // Decrease delay by 3 milliseconds (adjust as needed)
+        if (currentDelay > 10) {
+            int newDelay = currentDelay - 5;
             gameLoop.setDelay(newDelay);
         }
     }
 
     private void resetGame() {
-        targetScore = currentLevel * 10; // Adjust target score based on the current level
+        targetScore = currentLevel * 10;
         snakeHead = new Title(5, 5);
         snakeBody.clear();
         placeFood();
@@ -184,7 +182,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) { //called every x milliseconds by gameLoop timer
+    public void actionPerformed(ActionEvent e) {
         move();
         repaint();
         if (gameOver || finishgame) {
@@ -192,9 +190,9 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    //control ular
     @Override
     public void keyPressed(KeyEvent e) {
-        // System.out.println("KeyEvent: " + e.getKeyCode());
         if (e.getKeyCode() == KeyEvent.VK_UP && velocityY != 1) {
             velocityX = 0;
             velocityY = -1;
