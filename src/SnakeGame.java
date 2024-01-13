@@ -228,7 +228,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         gameLoop.start();
     }
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {}
 
