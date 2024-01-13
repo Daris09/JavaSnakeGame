@@ -56,7 +56,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         velocityX = 1;
         velocityY = 0;
 
-        gameLoop = new Timer(100, this); 
+        gameLoop = new Timer(100, this);
         gameLoop.start();
 
         this.requestFocus();
@@ -139,8 +139,8 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             }
         }
 
-        if (snakeHead.x*TitleSize < 0 || snakeHead.x*TitleSize > boardWidth || //passed left border or right border
-                snakeHead.y*TitleSize < 0 || snakeHead.y*TitleSize > boardHeight ) { //passed top border or bottom border
+        if (snakeHead.x*TitleSize < 0 || snakeHead.x*TitleSize > boardWidth || 
+                snakeHead.y*TitleSize < 0 || snakeHead.y*TitleSize > boardHeight ) {
             gameOver = true;
         }// kodisi menang dalam permainan
         if (snakeBody.size() >= targetScore) {
