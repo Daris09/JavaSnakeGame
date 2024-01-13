@@ -45,6 +45,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         setBackground(Color.black);
         addKeyListener(this);
         setFocusable(true);
+        JOptionPane.showMessageDialog(this, "Welcome to Snake Game!\nPress ENTER to start the game.");
 
         snakeHead = new Title(5, 5);
         snakeBody = new ArrayList<Title>();
@@ -60,6 +61,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         gameLoop.start();
 
         this.requestFocus();
+
     }
 
     public void paintComponent(Graphics g) {
