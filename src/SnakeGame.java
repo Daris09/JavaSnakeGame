@@ -37,6 +37,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
     boolean gameOver = false;
     boolean finishgame = false;
     String winmessage = "";
+    String gameovermessage = "";
 
     SnakeGame(int boardWidth, int boardHeight) {
         this.boardWidth = boardWidth;
@@ -94,7 +95,7 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Arial", Font.PLAIN, 16));
         if (gameOver) {
             g.setColor(Color.red);
-            g.drawString("Game Over: " + String.valueOf(snakeBody.size()), TitleSize - 16, TitleSize);
+            g.drawString("Game Over: " + String.valueOf(snakeBody.size()) + " Prees ENTER to restart the Game", TitleSize - 16, TitleSize);
         } else if (finishgame) {
             g.setColor(Color.blue);
             g.drawString(winmessage, TitleSize - 16, TitleSize);
@@ -146,9 +147,15 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
             gameOver = true;
         }// kodisi menang dalam permainan
         if (snakeBody.size() >= targetScore) {
-            finishgame = true;
-            winmessage = "Congratulations! You completed Level " + currentLevel + "!";
-            resetGame();
+            if (currentLevel < 3) {
+                finishgame = true;
+                winmessage = "Congratulations! You completed Level " + currentLevel + "! \nPrees SPACE to continue next level";
+                resetGame();
+            } else {
+                finishgame = true;
+                winmessage = "Congratulations! You have won the game!\nPress ENTER to restart the game";
+                resetGame();
+            }
         }
     }
 
